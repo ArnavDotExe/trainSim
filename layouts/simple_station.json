@@ -1,0 +1,37 @@
+{
+  "nodes": {
+    "WL_A": { "x": 100, "y": 150 },  
+    "WL_B1": { "x": 300, "y": 140, "station": true, "platforms": 1 },  
+    "WL_B2": { "x": 300, "y": 160, "station": true, "platforms": 1 },  
+    "WL_J": { "x": 500, "y": 150 },  
+    "WL_C": { "x": 700, "y": 150 },  
+
+    "CL_A": { "x": 100, "y": 250 },  
+    "CL_B1": { "x": 300, "y": 240, "station": true, "platforms": 1 },  
+    "CL_B2": { "x": 300, "y": 260, "station": true, "platforms": 1 },  
+    "CL_J": { "x": 500, "y": 250 },  
+    "CL_C": { "x": 700, "y": 250 },  
+
+    "X1": { "x": 400, "y": 200 },
+    "X2": { "x": 600, "y": 200 }
+  },
+
+  "edges": [
+    ["WL_A", "WL_B1"],
+    ["WL_A", "WL_B2"],
+    ["WL_B1", "WL_J"],
+    ["WL_B2", "WL_J"],
+    ["WL_J", "WL_C"],
+
+    ["CL_A", "CL_B1"],
+    ["CL_A", "CL_B2"],
+    ["CL_B1", "CL_J"],
+    ["CL_B2", "CL_J"],
+    ["CL_J", "CL_C"],
+
+    ["WL_B1", "X1"],
+    ["CL_B1", "X1"],
+    ["WL_J", "X2"],
+    ["CL_J", "X2"]
+  ]
+}
