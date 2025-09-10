@@ -53,44 +53,14 @@ time = 0
 paused = False
 running = True
 
-# while running:
-#     dt = clock.tick(FPS) / 1000.0
-#     if not paused:
-#         time += dt
-
-#     for event in pygame.event.get():
-#         if event.type == pygame.QUIT:
-#             running = False
-#         elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-#             paused = not paused
-
-#     for spec in timetable.check_spawns(time):
-#         trains.append(Train(spec["id"], spec["color"], spec["route"]))
-
-#     if not paused:
-#         for t in trains:
-#             t.update(graph, dt)
-
-#     screen.fill((240, 240, 240))
-#     graph.draw(screen)
-#     for t in trains:
-#         t.draw(screen, graph)
-
-    
-#     txt = font.render(f"Time: {time:.1f}s (SPACE pause)", True, (0, 0, 0))
-#     screen.blit(txt, (10, 10))
-#     pygame.display.flip()
-    
-    
-running = True
 while running:
-    dt = clock.tick(60) / 1000.0  # delta time
-    
+    dt = clock.tick(FPS) / 1000.0
+    if not paused:
+        time += dt
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
-        # 👇 Add this block here inside the event loop
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mx, my = event.pos
 
@@ -117,6 +87,27 @@ while running:
                     )
                     if dist < 10:
                         e.blocked = not e.blocked
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            paused = not paused
+
+    for spec in timetable.check_spawns(time):
+        trains.append(Train(spec["id"], spec["color"], spec["route"]))
+
+    if not paused:
+        for t in trains:
+            t.update(graph, dt)
+
+    screen.fill((240, 240, 240))
+    graph.draw(screen)
+    for t in trains:
+        t.draw(screen, graph)
+
+    
+    txt = font.render(f"Time: {time:.1f}s (SPACE pause)", True, (0, 0, 0))
+    screen.blit(txt, (10, 10))
+    pygame.display.flip()
+    
+    
     
     
 
